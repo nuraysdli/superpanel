@@ -1,0 +1,150 @@
+1. reklamlarda deaktiv etmə əvəzinə update qoy, reklamı redaktə etmək mümkün olsun (update olaraq dəyişəndə bi dənə buton əlavə et yanıb sönən yandıranda aktiv olsun söndürəndə deaktiv əsas update apisidi).
+2. refresh token məsələsini düzəlt.
+3. userlərin redaktəsi.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  const statsData = {
+    totalUsers: Array.isArray(allUsers) ? allUsers.length : (allUsers?.content?.length || 0),
+    activeBusinesses: Array.isArray(approvedBusinesses) ? approvedBusinesses.length : 0,
+    totalProducts: Array.isArray(products) ? products.length : (products?.content?.length || 0),
+    pendingApprovals: Array.isArray(pendingBusinesses) ? pendingBusinesses.length : 0,
+    totalAds: Array.isArray(ads) ? ads.length : (ads?.content?.length || 0),
+    totalCategories: Array.isArray(categories) ? categories.length : (categories?.content?.length || 0),
+    notifications: Array.isArray(notifications) ? notifications.filter(n => n && n.title).length : 0,
+    reports: Array.isArray(reports) ? reports.length : (reports?.content?.length || 0),
+    profiles: Array.isArray(profiles) ? profiles.length : (profiles?.content?.length || 0)
+  };
+
+
+
+
+
+
+
+  // const quickActions = [
+  //   { id: 'users', label: 'İstifadəçilər', icon: '👥', color: '#3b82f6', action: 'persons' },
+  //   { id: 'business', label: 'Bizneslər', icon: '🏢', color: '#10b981', action: 'businesses' },
+  //   { id: 'products', label: 'Məhsullar', icon: '📦', color: '#f59e0b', action: 'products' },
+  //   { id: 'reports', label: 'Hesabatlar', icon: '📊', color: '#ef4444', action: 'report' },
+  //   { id: 'notifications', label: 'Bildirişlər', icon: '🔔', color: '#8b5cf6', action: 'notification' },
+  //   { id: 'settings', label: 'Tənzimləmələr', icon: '⚙️', color: '#06b6d4', action: 'roles' }
+  // ];
+
+  // const recentActivities = [
+  //   { id: 1, user: 'Nigar Həsənzadə', action: 'Yeni biznes əlavə etdi', time: '5 dəqiqə əvvəl', icon: '🏢', color: '#10b981' },
+  //   { id: 2, user: 'System', action: 'Avtomatik backup tamamlandı', time: '15 dəqiqə əvvəl', icon: '💾', color: '#3b82f6' },
+  //   { id: 3, user: 'Admin', action: 'İstifadəçi rolunu yenilədi', time: '1 saat əvvəl', icon: '👥', color: '#f59e0b' },
+  //   { id: 4, user: 'Mehmet Ali', action: 'Məhsul kataloqunu yenilədi', time: '2 saat əvvəl', icon: '📦', color: '#ef4444' },
+  //   { id: 5, user: 'System', action: 'Sistem yenilənməsi', time: '3 saat əvvəl', icon: '🔧', color: '#8b5cf6' }
+  // ];
+
+  // const systemStatus = [
+  //   { label: 'Server Status', value: 'Online', color: '#10b981', icon: '🟢' },
+  //   { label: 'Database', value: 'Healthy', color: '#10b981', icon: '🗄️' },
+  //   { label: 'API Response', value: '245ms', color: '#f59e0b', icon: '⚡' },
+  //   { label: 'Uptime', value: '99.8%', color: '#10b981', icon: '⏱️' }
+  // ];
+
+
+
+
+
+      {/* Quick Actions */}
+      <div className="quick-actions-section">
+        <h2 className="section-title">🚀 Tez Əməliyyatlar</h2>
+        <div className="quick-actions-grid">
+          {quickActions.map((action) => (
+            <div key={action.id} className="quick-action-card" style={{ '--action-color': action.color }}>
+              <div className="action-icon">{action.icon}</div>
+              <div className="action-label">{action.label}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="dashboard-bottom">
+        {/* Recent Activities */}
+        <div className="recent-activities">
+          <h2 className="section-title">� Son Aktivliklər</h2>
+          <div className="activities-list">
+            {recentActivities.map((activity) => (
+              <div key={activity.id} className="activity-item">
+                <div className="activity-icon" style={{ backgroundColor: activity.color }}>
+                  {activity.icon}
+                </div>
+                <div className="activity-content">
+                  <div className="activity-user">{activity.user}</div>
+                  <div className="activity-action">{activity.action}</div>
+                  <div className="activity-time">{activity.time}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* System Status */}
+        <div className="system-status">
+          <h2 className="section-title">⚙️ Sistem Statusu</h2>
+          <div className="status-grid">
+            {systemStatus.map((status, index) => (
+              <div key={index} className="status-item">
+                <div className="status-icon">{status.icon}</div>
+                <div className="status-info">
+                  <div className="status-label">{status.label}</div>
+                  <div className="status-value" style={{ color: status.color }}>
+                    {status.value}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Pending Approvals Alert */}
+          {statsData.pendingApprovals > 0 && (
+            <div className="pending-alert">
+              <div className="alert-icon">⚠️</div>
+              <div className="alert-content">
+                <div className="alert-title">Gözləyən Təsdiqləmələr</div>
+                <div className="alert-message">
+                  {statsData.pendingApprovals} biznes təsdiqləməni gözləyir
+                </div>
+              </div>
+              <button className="alert-action" onClick={() => setActivePage('businesses')}>İndi Bax</button>
+            </div>
+          )}
+          
+          {/* Additional Stats */}
+          {statsData.reports > 0 && (
+            <div className="pending-alert" style={{ background: 'linear-gradient(135deg, rgba(239, 68, 68, 0.2) 0%, rgba(239, 68, 68, 0.1) 100%)', borderColor: 'rgba(239, 68, 68, 0.3)' }}>
+              <div className="alert-icon">📋</div>
+              <div className="alert-content">
+                <div className="alert-title">Yeni Hesabatlar</div>
+                <div className="alert-message">
+                  {statsData.reports} hesabat yoxlanılmağı gözləyir
+                </div>
+              </div>
+              <button className="alert-action" onClick={() => setActivePage('report')} style={{ color: '#ef4444', borderColor: 'rgba(239, 68, 68, 0.5)' }}>Hesabatlara Bax</button>
+            </div>
+          )}
+        </div>
