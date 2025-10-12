@@ -1,0 +1,54 @@
+name: React CI/CD Development
+
+on:
+  push:
+    branches:
+      - dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20.15.0'
+
+      - name: Install dependencies & build React app
+        run: |
+          cd react
+          npm install
+          npm run build
+
+      - name: Docker Login
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      - name: Build Docker Image
+        run: docker build -t agilazizovf/otogosuperadminfront ./admin_panel
+
+      - name: Push Docker Image
+        run: docker push agilazizovf/otogosuperadminfront
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to Ubuntu Server via SSH
+        uses: appleboy/ssh-action@v0.1.7
+        with:
+          host: ${{ secrets.SERVER_IP }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            docker pull agilazizovf/otogosuperadminfront
+            docker stop otogosuperadminfront || true
+            docker rm otogosuperadminfront || true
+            docker run -d \
+            --name otogosuperadminfront \
+            -p 9544:80 \
+            agilazizovf/otogosuperadminfront
