@@ -37,24 +37,24 @@ const Home = () => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   // 🔹 Refresh token yalnız token expired və ya 403 error zamanı
-  useEffect(() => {
-    const callRefreshIfNeeded = async () => {
-      if (!token) return;
+  // useEffect(() => {
+  //   const callRefreshIfNeeded = async () => {
+  //     if (!token) return;
 
-      try {
-        if (checkTokenExpiration()) {
-          console.log("Token expired, refresh edilir...");
-          await dispatch(refreshToken()).unwrap();
-        }
-      } catch (err) {
-        console.log("Refresh token alınmadı:", err);
-        dispatch(clearRefreshState());
-        window.location.href = "/login";
-      }
-    };
+  //     try {
+  //       if (checkTokenExpiration()) {
+  //         console.log("Token expired, refresh edilir...");
+  //         await dispatch(refreshToken()).unwrap();
+  //       }
+  //     } catch (err) {
+  //       console.log("Refresh token alınmadı:", err);
+  //       dispatch(clearRefreshState());
+  //       window.location.href = "/login";
+  //     }
+  //   };
 
-    callRefreshIfNeeded();
-  }, [dispatch, token]);
+  //   callRefreshIfNeeded();
+  // }, [dispatch, token]);
 
   // 🔹 Token expiration yoxlaması səhifə yüklənəndə
   useEffect(() => {
