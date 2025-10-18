@@ -6,7 +6,7 @@
   margin: 0 auto;
   background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
   min-height: 100vh;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 /* ===== HEADER STYLES ===== */
@@ -23,13 +23,17 @@
 }
 
 .logs-header::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   right: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 70%
+  );
   animation: float 6s ease-in-out infinite;
 }
 
@@ -37,7 +41,7 @@
   font-size: 3rem;
   font-weight: 800;
   margin: 0 0 15px 0;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   position: relative;
   z-index: 1;
 }
@@ -223,7 +227,11 @@
 .search-info {
   margin-bottom: 20px;
   padding: 12px 20px;
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(99, 102, 241, 0.1) 0%,
+    rgba(139, 92, 246, 0.1) 100%
+  );
   color: #5b21b6;
   border-radius: 12px;
   font-weight: 600;
@@ -252,7 +260,11 @@
 }
 
 .error-state {
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(220, 38, 38, 0.1) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(239, 68, 68, 0.1) 0%,
+    rgba(220, 38, 38, 0.1) 100%
+  );
   color: #dc2626;
   padding: 20px;
   border-radius: 12px;
@@ -333,7 +345,11 @@
 }
 
 .logs-table tbody tr:hover {
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(99, 102, 241, 0.05) 0%,
+    rgba(139, 92, 246, 0.05) 100%
+  );
   transform: scale(1.01);
 }
 
@@ -599,13 +615,22 @@
 
 /* ===== ANIMATIONS ===== */
 @keyframes float {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(5deg); }
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes modalSlideIn {
@@ -625,16 +650,16 @@
     flex-direction: column;
     align-items: stretch;
   }
-  
+
   .search-filter-section {
     max-width: none;
   }
-  
+
   .stats-section {
     justify-content: center;
     gap: 10px;
   }
-  
+
   .filter-controls,
   .sort-controls {
     justify-content: center;
@@ -646,39 +671,39 @@
   .logs-container {
     padding: 20px;
   }
-  
+
   .logs-title {
     font-size: 2.2rem;
   }
-  
+
   .logs-table-container {
     overflow-x: auto;
   }
-  
+
   .logs-table {
     min-width: 800px;
   }
-  
+
   .logs-table th,
   .logs-table td {
     padding: 12px 8px;
     font-size: 12px;
   }
-  
+
   .modal-content {
     padding: 20px;
   }
-  
+
   .info-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .filter-controls,
   .sort-controls {
     flex-direction: column;
     align-items: stretch;
   }
-  
+
   .filter-select,
   .sort-select {
     min-width: auto;
@@ -689,58 +714,70 @@
   .logs-container {
     padding: 15px;
   }
-  
+
   .logs-header {
     padding: 30px 20px;
   }
-  
+
   .logs-title {
     font-size: 1.8rem;
   }
-  
+
   .modal-header {
     padding: 20px;
   }
-  
+
   .modal-title h2 {
     font-size: 1.4rem;
   }
-  
+
   .search-filter-section {
     gap: 12px;
   }
-  
+
   .stat-card {
     padding: 12px;
     min-width: 70px;
   }
-  
+
   .stat-number {
     font-size: 1.2rem;
   }
-  
+
   .logs-table {
     min-width: 600px;
   }
-  
+
   .logs-table th,
   .logs-table td {
     padding: 8px 6px;
     font-size: 11px;
   }
-  
+
   .details-preview {
     max-width: 150px;
   }
 }
 
 /* ===== TABLE COLUMN WIDTHS ===== */
-.th-id { width: 80px; }
-.th-date { width: 180px; }
-.th-user { width: 150px; }
-.th-action { width: 150px; }
-.th-details { width: auto; }
-.th-actions { width: 120px; }
+.th-id {
+  width: 80px;
+}
+.th-date {
+  width: 180px;
+}
+.th-user {
+  width: 150px;
+}
+.th-action {
+  width: 150px;
+}
+.th-details {
+  width: auto;
+}
+.th-actions {
+  width: 120px;
+}
 
 /* ===== SPECIAL STATES ===== */
 .log-row.error {

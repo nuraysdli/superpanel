@@ -10,9 +10,9 @@ import profileSlice from "./Features/ProfessionalProfile";
 // import serviceCatalogSlice from "./Features/ServiceCatalog";
 import reportTransactionsSlice from "./Features/reportSlice";
 import notificationsSlice from "./Features/notificationSlice";
-import wheelServicesSlice from "./Features/WheelSlice";
+// import wheelServicesSlice from "./Features/WheelSlice";
 import logsSlice from "./Features/LogSlice";
-import refreshSlice from "./Features/RefreshSlice"
+import refreshSlice from "./Features/RefreshSlice";
 
 const store = configureStore({
   reducer: {
@@ -27,9 +27,9 @@ const store = configureStore({
     // serviceCatalog: serviceCatalogSlice,
     reports: reportTransactionsSlice,
     notifications: notificationsSlice,
-    wheelServices: wheelServicesSlice,
+    // wheelServices: wheelServicesSlice,
     logs: logsSlice,
-    refresh:refreshSlice
+    refresh: refreshSlice,
   },
 });
 

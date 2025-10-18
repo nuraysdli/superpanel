@@ -99,7 +99,6 @@ const AdsList = () => {
       <div className="add-ad-form">
         <div className="form-group">
           <div className="form-input">
-            <label className="form-label">🔗 Reklam Linki</label>
             <input
               type="url"
               placeholder="https://example.com"
@@ -108,7 +107,11 @@ const AdsList = () => {
               className="input-field"
             />
           </div>
-          <button onClick={handleAddAd} className="btn btn-primary" disabled={loading}>
+          <button
+            onClick={handleAddAd}
+            className="btn btn-primary"
+            disabled={loading}
+          >
             ✨ Reklam Əlavə Et
           </button>
         </div>
@@ -129,7 +132,9 @@ const AdsList = () => {
             <div className="empty-state">
               <div className="empty-icon">🎯</div>
               <h3>Hələ heç bir reklam yoxdur</h3>
-              <p>Yuxarıdakı formu istifadə edərək ilk reklamınızı əlavə edin.</p>
+              <p>
+                Yuxarıdakı formu istifadə edərək ilk reklamınızı əlavə edin.
+              </p>
             </div>
           ) : (
             <ul className="ads-list">
@@ -141,14 +146,22 @@ const AdsList = () => {
                       <input
                         type="url"
                         value={editedAds[ad.id]?.link ?? ad.link}
-                        onChange={(e) => handleEditField(ad.id, "link", e.target.value)}
+                        onChange={(e) =>
+                          handleEditField(ad.id, "link", e.target.value)
+                        }
                         className="input-field"
                       />
                     </div>
                     <div className="ad-status">
                       <select
                         value={editedAds[ad.id]?.isActive ?? ad.isActive}
-                        onChange={(e) => handleEditField(ad.id, "isActive", Number(e.target.value))}
+                        onChange={(e) =>
+                          handleEditField(
+                            ad.id,
+                            "isActive",
+                            Number(e.target.value)
+                          )
+                        }
                         className="locale-select"
                       >
                         <option value={1}>🟢 Aktiv</option>
@@ -162,7 +175,10 @@ const AdsList = () => {
                       {ad.pictureUrl ? (
                         <>
                           <img
-                            src={imageUrls[ad.id] || `${BASE_URL}/api/files/download/${ad.pictureUrl}`}
+                            src={
+                              imageUrls[ad.id] ||
+                              `${BASE_URL}/api/files/download/${ad.pictureUrl}`
+                            }
                             alt="Reklam şəkli"
                             className="ad-image"
                           />
@@ -186,14 +202,20 @@ const AdsList = () => {
                         type="file"
                         accept="image/*"
                         onChange={(e) =>
-                          setFiles((prev) => ({ ...prev, [ad.id]: e.target.files[0] }))
+                          setFiles((prev) => ({
+                            ...prev,
+                            [ad.id]: e.target.files[0],
+                          }))
                         }
                         className="file-input"
                       />
                       <select
                         value={locales[ad.id] || "AZ"}
                         onChange={(e) =>
-                          setLocales((prev) => ({ ...prev, [ad.id]: e.target.value }))
+                          setLocales((prev) => ({
+                            ...prev,
+                            [ad.id]: e.target.value,
+                          }))
                         }
                         className="locale-select"
                       >
@@ -220,7 +242,7 @@ const AdsList = () => {
                     </button>
                     <button
                       onClick={() => {
-                        if (window.confirm('Bu reklamı silməkdə əminsiniz?')) {
+                        if (window.confirm("Bu reklamı silməkdə əminsiniz?")) {
                           dispatch(deleteAd(ad.id));
                         }
                       }}

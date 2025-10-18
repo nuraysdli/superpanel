@@ -4,7 +4,7 @@
   min-height: 100vh;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: #ffffff;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 /* ==================== HEADER SECTION ==================== */
@@ -317,7 +317,7 @@
 }
 
 .profile-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -329,8 +329,13 @@
 }
 
 @keyframes shimmer {
-  0%, 100% { background-position: 200% 0; }
-  50% { background-position: -200% 0; }
+  0%,
+  100% {
+    background-position: 200% 0;
+  }
+  50% {
+    background-position: -200% 0;
+  }
 }
 
 .profile-card:hover {
@@ -825,8 +830,12 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .loading-state p {
@@ -852,62 +861,62 @@
   .profiles-container {
     padding: 1rem;
   }
-  
+
   .profiles-title {
     font-size: 2rem;
   }
-  
+
   .profiles-controls {
     padding: 1.5rem;
   }
-  
+
   .search-sort-section {
     flex-direction: column;
     gap: 1rem;
   }
-  
+
   .view-stats-section {
     flex-direction: column;
     gap: 1rem;
   }
-  
+
   .search-input-container {
     min-width: unset;
   }
-  
+
   .profiles-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
-  
+
   .profile-list-info {
     flex-direction: column;
     align-items: flex-start;
     gap: 1rem;
   }
-  
+
   .profile-list-meta {
     align-items: flex-start;
     min-width: unset;
   }
-  
+
   .profile-detail-modal {
     width: 95%;
     max-height: 95vh;
   }
-  
+
   .modal-header {
     padding: 1.5rem;
   }
-  
+
   .modal-content {
     padding: 1.5rem;
   }
-  
+
   .info-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .stats-section {
     flex-wrap: wrap;
     justify-content: center;
@@ -918,20 +927,20 @@
   .profiles-title {
     font-size: 1.5rem;
   }
-  
+
   .profiles-subtitle {
     font-size: 1rem;
   }
-  
+
   .modal-title h2 {
     font-size: 1.4rem;
   }
-  
+
   .profile-avatar-large {
     width: 80px;
     height: 80px;
   }
-  
+
   .profile-initials-large {
     font-size: 2rem;
   }

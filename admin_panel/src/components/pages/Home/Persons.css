@@ -6,7 +6,7 @@
   margin: 0 auto;
   background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
   min-height: 100vh;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 /* ===== HEADER STYLES ===== */
@@ -23,13 +23,17 @@
 }
 
 .persons-header::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   right: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 70%
+  );
   animation: float 6s ease-in-out infinite;
 }
 
@@ -37,7 +41,7 @@
   font-size: 3rem;
   font-weight: 800;
   margin: 0 0 15px 0;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   position: relative;
   z-index: 1;
 }
@@ -119,7 +123,11 @@
 .search-info {
   margin-top: 10px;
   padding: 12px 20px;
-  background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(34, 197, 94, 0.1) 0%,
+    rgba(16, 185, 129, 0.1) 100%
+  );
   color: #059669;
   border-radius: 12px;
   font-weight: 600;
@@ -184,7 +192,11 @@
 }
 
 .error-state {
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(220, 38, 38, 0.1) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(239, 68, 68, 0.1) 0%,
+    rgba(220, 38, 38, 0.1) 100%
+  );
   color: #dc2626;
   padding: 20px;
   border-radius: 12px;
@@ -287,13 +299,21 @@
 }
 
 .user-row:hover {
-  background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(102, 126, 234, 0.05) 0%,
+    rgba(118, 75, 162, 0.05) 100%
+  );
   transform: translateY(-2px);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
 }
 
 .user-row.editing {
-  background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(5, 150, 105, 0.1) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(16, 185, 129, 0.1) 0%,
+    rgba(5, 150, 105, 0.1) 100%
+  );
   border: 2px solid rgba(16, 185, 129, 0.3);
 }
 
@@ -327,7 +347,8 @@
   gap: 2px;
 }
 
-.name, .surname {
+.name,
+.surname {
   font-weight: 600;
   color: #1f2937;
   font-size: 14px;
@@ -375,7 +396,8 @@
   width: 400px;
 }
 
-.view-actions, .edit-actions {
+.view-actions,
+.edit-actions {
   display: flex;
   gap: 8px;
   justify-content: center;
@@ -522,13 +544,22 @@
 
 /* ===== ANIMATIONS ===== */
 @keyframes float {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(5deg); }
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes fadeIn {
@@ -551,11 +582,11 @@
   .persons-container {
     padding: 20px;
   }
-  
+
   .users-table {
     font-size: 13px;
   }
-  
+
   .users-table th,
   .users-table td {
     padding: 12px 8px;
@@ -566,51 +597,52 @@
   .persons-title {
     font-size: 2.2rem;
   }
-  
+
   .persons-controls {
     flex-direction: column;
     align-items: stretch;
   }
-  
+
   .search-section {
     max-width: none;
   }
-  
+
   .stats-section {
     justify-content: space-around;
   }
-  
+
   .table-container {
     overflow-x: auto;
   }
-  
+
   .users-table {
     min-width: 700px;
   }
-  
+
   .user-actions {
     width: 160px;
   }
-  
-  .view-actions, .edit-actions {
+
+  .view-actions,
+  .edit-actions {
     flex-direction: column;
     gap: 5px;
   }
-  
+
   .btn {
     padding: 8px 12px;
     font-size: 11px;
   }
-  
+
   .pagination {
     gap: 5px;
   }
-  
+
   .pagination-btn {
     padding: 10px 15px;
     font-size: 12px;
   }
-  
+
   .pagination-number {
     padding: 8px 12px;
     font-size: 12px;
@@ -622,34 +654,34 @@
   .persons-container {
     padding: 15px;
   }
-  
+
   .persons-header {
     padding: 30px 20px;
   }
-  
+
   .persons-title {
     font-size: 1.8rem;
   }
-  
+
   .users-table {
     min-width: 600px;
     font-size: 12px;
   }
-  
+
   .users-table th,
   .users-table td {
     padding: 10px 6px;
   }
-  
+
   .stat-card {
     padding: 15px;
     min-width: 100px;
   }
-  
+
   .stat-number {
     font-size: 1.5rem;
   }
-  
+
   .pagination-numbers {
     max-width: 250px;
     overflow-x: auto;

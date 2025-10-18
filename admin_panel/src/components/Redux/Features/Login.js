@@ -49,26 +49,23 @@ export const logoutAdmin = createAsyncThunk("auth/logoutAdmin", async () => {
 });
 
 // 🔹 Refresh token
-export const refreshToken = createAsyncThunk(
-  "auth/refreshToken",
-  async () => {
-    const refreshToken = localStorage.getItem("refreshToken");
-    if (!refreshToken) throw new Error("Refresh token mövcud deyil");
+export const refreshToken = createAsyncThunk("auth/refreshToken", async () => {
+  const refreshToken = localStorage.getItem("refreshToken");
+  if (!refreshToken) throw new Error("Refresh token mövcud deyil");
 
-    const res = await axios.post(
-      RefreshUrl,
-      { refreshToken },
-      { headers: { "Content-Type": "application/json" } }
-    );
+  const res = await axios.post(
+    RefreshUrl,
+    { refreshToken },
+    { headers: { "Content-Type": "application/json" } }
+  );
 
-    localStorage.setItem("token", res.data.token);
-    localStorage.setItem("refreshToken", res.data.refreshToken);
-    const expirationTime = new Date().getTime() + res.data.expiresIn * 1000;
-    localStorage.setItem("tokenExpiration", expirationTime.toString());
+  localStorage.setItem("token", res.data.token);
+  localStorage.setItem("refreshToken", res.data.refreshToken);
+  const expirationTime = new Date().getTime() + res.data.expiresIn * 1000;
+  localStorage.setItem("tokenExpiration", expirationTime.toString());
 
-    return res.data;
-  }
-);
+  return res.data;
+});
 
 // 🔹 Token müddətini yoxlayan funksiya
 export const checkTokenExpiration = () => {
@@ -176,7 +173,8 @@ const authSlice = createSlice({
         state.token = null;
         state.isAuthenticated = false;
         state.error =
-          action.error.message || "Token yenilənməsi alınmadı. Yenidən daxil olun.";
+          action.error.message ||
+          "Token yenilənməsi alınmadı. Yenidən daxil olun.";
       });
   },
 });

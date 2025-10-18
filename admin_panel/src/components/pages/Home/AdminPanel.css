@@ -3,7 +3,7 @@
   display: flex;
   min-height: 100vh;
   background-color: #f8f9fa;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .sidebar {
@@ -12,7 +12,7 @@
   top: 0;
   height: 100vh;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
   transition: width 0.3s ease;
   z-index: 1000;
   display: flex;
@@ -22,14 +22,14 @@
 
 .sidebar-header {
   padding: 20px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
 .toggle-button {
-  background: rgba(255,255,255,0.2);
+  background: rgba(255, 255, 255, 0.2);
   border: none;
   color: white;
   font-size: 18px;
@@ -40,7 +40,7 @@
 }
 
 .toggle-button:hover {
-  background: rgba(255,255,255,0.3);
+  background: rgba(255, 255, 255, 0.3);
 }
 
 .logo {
@@ -65,17 +65,17 @@
   cursor: pointer;
   transition: all 0.2s;
   font-size: 14px;
-  color: rgba(255,255,255,0.8);
+  color: rgba(255, 255, 255, 0.8);
   text-align: left;
 }
 
 .menu-item:hover {
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
   color: white;
 }
 
 .menu-item.active {
-  background: rgba(255,255,255,0.2);
+  background: rgba(255, 255, 255, 0.2);
   color: white;
   border-right: 3px solid white;
 }
@@ -93,7 +93,7 @@
 
 .sidebar-footer {
   padding: 20px;
-  border-top: 1px solid rgba(255,255,255,0.1);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .logout-button {
@@ -116,13 +116,14 @@
 
 .main-content {
   flex: 1;
-  transition: margin-left 0.3s ease;
+  width: 100% !important;
+  background-color: rebeccapurple;
 }
 
 .header {
   background: white;
   padding: 20px 30px;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -162,13 +163,12 @@
 }
 
 .content {
-  padding: 30px;
   min-height: calc(100vh - 80px);
   max-width: 1400px;
 }
 
 .dashboard-container {
-  max-width: 100%;
+  width: 100%;
 }
 
 .welcome-card {
@@ -203,7 +203,7 @@
   background: white;
   padding: 30px;
   border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   text-align: center;
   transition: transform 0.2s, box-shadow 0.2s;
   border: 1px solid #f1f2f6;
@@ -211,7 +211,7 @@
 
 .stat-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
 }
 
 .stat-card h3 {
@@ -233,31 +233,27 @@
   .sidebar {
     width: 70px !important;
   }
-  
-  .main-content {
-    margin-left: 70px !important;
-  }
-  
+
   .header {
     padding: 15px 20px;
   }
-  
+
   .page-title {
     font-size: 24px;
   }
-  
+
   .content {
     padding: 20px;
   }
-  
+
   .stats-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .welcome-card {
     padding: 25px;
   }
-  
+
   .welcome-card h2 {
     font-size: 24px;
   }
@@ -269,16 +265,16 @@
 }
 
 .sidebar::-webkit-scrollbar-track {
-  background: rgba(255,255,255,0.1);
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .sidebar::-webkit-scrollbar-thumb {
-  background: rgba(255,255,255,0.3);
+  background: rgba(255, 255, 255, 0.3);
   border-radius: 2px;
 }
 
 .sidebar::-webkit-scrollbar-thumb:hover {
-  background: rgba(255,255,255,0.5);
+  background: rgba(255, 255, 255, 0.5);
 }
 
 /* Animation for content loading */
@@ -322,7 +318,7 @@
 }
 
 .dashboard-hero::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -334,8 +330,13 @@
 }
 
 @keyframes shimmer {
-  0%, 100% { background-position: 200% 0; }
-  50% { background-position: -200% 0; }
+  0%,
+  100% {
+    background-position: 200% 0;
+  }
+  50% {
+    background-position: -200% 0;
+  }
 }
 
 .hero-content {
@@ -401,7 +402,7 @@
   font-weight: 700;
   margin-bottom: 0.5rem;
   color: #ffffff;
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
 }
 
 .current-date {
@@ -430,7 +431,7 @@
 }
 
 .metric-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -439,10 +440,18 @@
   background: var(--metric-color, #667eea);
 }
 
-.metric-card.users::before { background: #3b82f6; }
-.metric-card.businesses::before { background: #10b981; }
-.metric-card.products::before { background: #f59e0b; }
-.metric-card.revenue::before { background: #ef4444; }
+.metric-card.users::before {
+  background: #3b82f6;
+}
+.metric-card.businesses::before {
+  background: #10b981;
+}
+.metric-card.products::before {
+  background: #f59e0b;
+}
+.metric-card.revenue::before {
+  background: #ef4444;
+}
 
 .metric-card:hover {
   transform: translateY(-8px);
@@ -530,7 +539,7 @@
 }
 
 .quick-action-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -684,7 +693,11 @@
 
 /* Pending Alert */
 .pending-alert {
-  background: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(245, 158, 11, 0.1) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(245, 158, 11, 0.2) 0%,
+    rgba(245, 158, 11, 0.1) 100%
+  );
   border: 1px solid rgba(245, 158, 11, 0.3);
   border-radius: 15px;
   padding: 1.5rem;
@@ -734,12 +747,12 @@
   .dashboard-bottom {
     grid-template-columns: 1fr;
   }
-  
+
   .hero-content {
     flex-direction: column;
     text-align: center;
   }
-  
+
   .time-info {
     text-align: center;
   }
@@ -749,34 +762,34 @@
   .dashboard-container {
     padding: 1rem;
   }
-  
+
   .dashboard-hero {
     padding: 2rem;
   }
-  
+
   .hero-title {
     font-size: 2rem;
   }
-  
+
   .current-time {
     font-size: 2rem;
   }
-  
+
   .metrics-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
   }
-  
+
   .metric-card {
     flex-direction: column;
     text-align: center;
     gap: 1rem;
   }
-  
+
   .quick-actions-grid {
     grid-template-columns: repeat(2, 1fr);
   }
-  
+
   .user-details {
     flex-direction: column;
     gap: 0.8rem;
@@ -787,15 +800,15 @@
   .hero-title {
     font-size: 1.5rem;
   }
-  
+
   .quick-actions-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .metric-value {
     font-size: 2rem;
   }
-  
+
   .current-time {
     font-size: 1.5rem;
   }

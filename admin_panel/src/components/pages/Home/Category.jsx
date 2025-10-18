@@ -23,7 +23,8 @@ const CategoryCard = ({
   getLocalizedName,
 }) => {
   const isEditing = editingId === category.id;
-  const localizedName = getLocalizedName(category.id, category.name) || category.name;
+  const localizedName =
+    getLocalizedName(category.id, category.name) || category.name;
 
   const handleCancelEdit = () => {
     handleEdit({ id: null });
@@ -146,7 +147,9 @@ const Category = () => {
 
   // 🔹 Kateqoriya sil
   const handleDelete = (id, name) => {
-    if (window.confirm(`"${name}" kateqoriyasını silmək istədiyinizə əminsiniz?`)) {
+    if (
+      window.confirm(`"${name}" kateqoriyasını silmək istədiyinizə əminsiniz?`)
+    ) {
       dispatch(deleteCategory(id));
     }
   };

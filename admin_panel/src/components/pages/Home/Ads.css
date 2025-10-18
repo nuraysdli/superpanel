@@ -2,6 +2,7 @@
 .ads-container {
   padding: 0;
   max-width: 100%;
+
   background: #f8fafc;
   min-height: 100vh;
 }
@@ -18,19 +19,25 @@
 }
 
 .ads-header::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")
+    repeat;
   animation: float 20s ease-in-out infinite;
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 .ads-title {
@@ -57,7 +64,7 @@
   background: white;
   padding: 35px;
   border-radius: 20px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
   margin-bottom: 40px;
   border: 1px solid #e2e8f0;
   position: relative;
@@ -65,7 +72,7 @@
 }
 
 .add-ad-form::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -134,13 +141,18 @@
 }
 
 .btn::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
   transition: left 0.5s;
 }
 
@@ -228,7 +240,7 @@
   background: white;
   border-radius: 24px;
   padding: 30px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
   border: 1px solid #e2e8f0;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
@@ -237,12 +249,12 @@
 
 .ad-card:hover {
   transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
   border-color: #6366f1;
 }
 
 .ad-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -252,13 +264,17 @@
 }
 
 .ad-card::after {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   right: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(99, 102, 241, 0.03) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(99, 102, 241, 0.03) 0%,
+    transparent 70%
+  );
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -301,7 +317,7 @@
   background: rgba(99, 102, 241, 0.1);
   padding: 8px 12px;
   border-radius: 8px;
-  font-family: 'Courier New', monospace;
+  font-family: "Courier New", monospace;
   border: 1px solid rgba(99, 102, 241, 0.2);
 }
 
@@ -315,19 +331,24 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   position: relative;
   overflow: hidden;
 }
 
 .ad-status::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.3),
+    transparent
+  );
   transition: left 0.6s;
 }
 
@@ -359,13 +380,14 @@
 }
 
 .ad-image-section::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%236366f1' fill-opacity='0.02'%3E%3Cpath d='M20 20c0-8.837-7.163-16-16-16s-16 7.163-16 16 7.163 16 16 16 16-7.163 16-16zm16 0c0-8.837-7.163-16-16-16s-16 7.163-16 16 7.163 16 16 16 16-7.163 16-16z'/%3E%3C/g%3E%3C/svg%3E") repeat;
+  background: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%236366f1' fill-opacity='0.02'%3E%3Cpath d='M20 20c0-8.837-7.163-16-16-16s-16 7.163-16 16 7.163 16 16 16 16-7.163 16-16zm16 0c0-8.837-7.163-16-16-16s-16 7.163-16 16 7.163 16 16 16 16-7.163 16-16z'/%3E%3C/g%3E%3C/svg%3E")
+    repeat;
   opacity: 0.5;
 }
 
@@ -384,14 +406,14 @@
   height: 140px;
   object-fit: cover;
   border-radius: 20px;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
   border: 4px solid white;
   transition: all 0.3s ease;
 }
 
 .ad-image:hover {
   transform: scale(1.05) rotate(2deg);
-  box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
 }
 
 .no-image {
@@ -405,7 +427,7 @@
   color: #64748b;
   font-size: 56px;
   border: 4px solid white;
-  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
 }
 
@@ -494,7 +516,7 @@
   background: white;
   border-radius: 20px;
   margin: 20px 0;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
 }
 
 .loading-spinner {
@@ -509,12 +531,20 @@
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 .error-state {
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(220, 38, 38, 0.1) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(239, 68, 68, 0.1) 0%,
+    rgba(220, 38, 38, 0.1) 100%
+  );
   color: #dc2626;
   padding: 20px 25px;
   border-radius: 16px;
@@ -531,7 +561,7 @@
   color: #64748b;
   background: white;
   border-radius: 20px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.06);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06);
   margin: 20px 0;
 }
 
@@ -574,72 +604,72 @@
     padding: 30px 25px;
     margin: -30px -30px 30px -30px;
   }
-  
+
   .ads-title {
     font-size: 28px;
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
   }
-  
+
   .ads-subtitle {
     margin-left: 0;
     font-size: 16px;
   }
-  
+
   .add-ad-form {
     padding: 25px;
     margin-left: -10px;
     margin-right: -10px;
     border-radius: 16px;
   }
-  
+
   .form-group {
     grid-template-columns: 1fr;
     gap: 20px;
   }
-  
+
   .ads-list {
     grid-template-columns: 1fr;
     gap: 20px;
   }
-  
+
   .ad-card {
     padding: 25px;
     margin: 0 -10px;
     border-radius: 20px;
   }
-  
+
   .ad-header-info {
     flex-direction: column;
     align-items: stretch;
     gap: 15px;
   }
-  
+
   .ad-status {
     align-self: flex-start;
   }
-  
+
   .ad-actions {
     flex-direction: column;
     gap: 12px;
   }
-  
+
   .btn {
     justify-content: center;
     width: 100%;
   }
-  
+
   .ad-image-preview {
     flex-direction: column;
     gap: 20px;
   }
-  
+
   .upload-controls {
     flex-direction: column;
     gap: 15px;
   }
-  
+
   .file-input,
   .locale-select {
     width: 100%;
@@ -652,57 +682,57 @@
     padding: 0;
     background: white;
   }
-  
+
   .ads-header {
     padding: 25px 20px;
     margin: -30px -30px 25px -30px;
     border-radius: 0 0 20px 20px;
   }
-  
+
   .ads-title {
     font-size: 24px;
   }
-  
+
   .ads-subtitle {
     font-size: 15px;
   }
-  
+
   .add-ad-form {
     padding: 20px;
     margin: 0 -15px 25px -15px;
     border-radius: 12px;
   }
-  
+
   .ad-card {
     padding: 20px;
     margin: 0 -15px;
     border-radius: 16px;
   }
-  
+
   .ad-image,
   .no-image {
     width: 120px;
     height: 120px;
   }
-  
+
   .btn {
     padding: 12px 20px;
     font-size: 14px;
   }
-  
+
   .input-field {
     padding: 14px 16px;
     font-size: 15px;
   }
-  
+
   .empty-state {
     padding: 60px 20px;
   }
-  
+
   .empty-icon {
     font-size: 64px;
   }
-  
+
   .loading-state {
     padding: 60px 20px;
   }
@@ -724,11 +754,11 @@
   .no-image {
     transition: none;
   }
-  
+
   .ad-card:hover {
     transform: none;
   }
-  
+
   .btn:hover {
     transform: none;
   }
@@ -739,27 +769,27 @@
   .ads-container {
     background: #0f172a;
   }
-  
+
   .ad-card {
     background: #1e293b;
     border-color: #334155;
   }
-  
+
   .add-ad-form {
     background: #1e293b;
     border-color: #334155;
   }
-  
+
   .input-field {
     background: #334155;
     border-color: #475569;
     color: white;
   }
-  
+
   .form-label {
     color: #e2e8f0;
   }
-  
+
   .ad-link h3 {
     color: #e2e8f0;
   }

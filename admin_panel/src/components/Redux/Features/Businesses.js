@@ -50,7 +50,9 @@ export const searchApprovedBusinesses = createAsyncThunk(
   "businesses/searchApprovedBusinesses",
   async (companyName, { rejectWithValue }) => {
     try {
-      const res = await api.get(`/api/businesses/search/approved?companyName=${companyName}`);
+      const res = await api.get(
+        `/api/businesses/search/approved?companyName=${companyName}`
+      );
       return res.data;
     } catch (err) {
       return rejectWithValue(err.response?.data || err.message);
@@ -62,7 +64,9 @@ export const searchPendingBusinesses = createAsyncThunk(
   "businesses/searchPendingBusinesses",
   async (companyName, { rejectWithValue }) => {
     try {
-      const res = await api.get(`/api/businesses/search/pending?companyName=${companyName}`);
+      const res = await api.get(
+        `/api/businesses/search/pending?companyName=${companyName}`
+      );
       return res.data;
     } catch (err) {
       return rejectWithValue(err.response?.data || err.message);
@@ -77,7 +81,6 @@ export const approveBusiness = createAsyncThunk(
     return { id, status: "ACTIVE" }; // status ACTIVE oldu
   }
 );
-
 
 export const rejectBusiness = createAsyncThunk(
   "businesses/rejectBusiness",
@@ -118,11 +121,12 @@ export const rejectTIN = createAsyncThunk(
   "businesses/rejectTIN",
   async ({ id, reason }) => {
     if (!reason) throw new Error("Reason required"); // frontend-də yoxlama
-    await api.post(`/api/businesses/${id}/reject-tin?reason=${encodeURIComponent(reason)}`);
+    await api.post(
+      `/api/businesses/${id}/reject-tin?reason=${encodeURIComponent(reason)}`
+    );
     return { id, status: "REJECTED", reason };
   }
 );
-
 
 // -----------------------------
 // Slice
@@ -146,57 +150,106 @@ const businessesSlice = createSlice({
   extraReducers: (builder) => {
     builder
       // GET-lər
-      .addCase(fetchAllBusinesses.pending, (state) => { state.loading = true; state.error = null; })
-      .addCase(fetchAllBusinesses.fulfilled, (state, action) => { state.loading = false; state.all = action.payload; })
-      .addCase(fetchAllBusinesses.rejected, (state, action) => { state.loading = false; state.error = action.payload || action.error.message; })
+      .addCase(fetchAllBusinesses.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(fetchAllBusinesses.fulfilled, (state, action) => {
+        state.loading = false;
+        state.all = action.payload;
+      })
+      .addCase(fetchAllBusinesses.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload || action.error.message;
+      })
 
-      .addCase(fetchBusinessById.fulfilled, (state, action) => { state.single = action.payload; })
-      .addCase(fetchApprovedBusinesses.fulfilled, (state, action) => { state.approved = action.payload; })
-      .addCase(fetchPendingBusinesses.fulfilled, (state, action) => { state.pending = action.payload; })
+      .addCase(fetchBusinessById.fulfilled, (state, action) => {
+        state.single = action.payload;
+      })
+      .addCase(fetchApprovedBusinesses.fulfilled, (state, action) => {
+        state.approved = action.payload;
+      })
+      .addCase(fetchPendingBusinesses.fulfilled, (state, action) => {
+        state.pending = action.payload;
+      })
 
       // Search
-      .addCase(searchApprovedBusinesses.pending, (state) => { state.searchLoading = true; })
-      .addCase(searchApprovedBusinesses.fulfilled, (state, action) => { state.searchLoading = false; state.searchApprovedResults = action.payload; })
-      .addCase(searchApprovedBusinesses.rejected, (state) => { state.searchLoading = false; })
+      .addCase(searchApprovedBusinesses.pending, (state) => {
+        state.searchLoading = true;
+      })
+      .addCase(searchApprovedBusinesses.fulfilled, (state, action) => {
+        state.searchLoading = false;
+        state.searchApprovedResults = action.payload;
+      })
+      .addCase(searchApprovedBusinesses.rejected, (state) => {
+        state.searchLoading = false;
+      })
 
-      .addCase(searchPendingBusinesses.pending, (state) => { state.searchLoading = true; })
-      .addCase(searchPendingBusinesses.fulfilled, (state, action) => { state.searchLoading = false; state.searchPendingResults = action.payload; })
-      .addCase(searchPendingBusinesses.rejected, (state) => { state.searchLoading = false; })
+      .addCase(searchPendingBusinesses.pending, (state) => {
+        state.searchLoading = true;
+      })
+      .addCase(searchPendingBusinesses.fulfilled, (state, action) => {
+        state.searchLoading = false;
+        state.searchPendingResults = action.payload;
+      })
+      .addCase(searchPendingBusinesses.rejected, (state) => {
+        state.searchLoading = false;
+      })
 
       .addCase(approveBusiness.fulfilled, (state, action) => {
-  const b = state.all.find(b => b.id === action.payload.id);
-  if (b) b.status = action.payload.status; // ACTIVE
-})
+        const b = state.all.find((b) => b.id === action.payload.id);
+        if (b) b.status = action.payload.status; // ACTIVE
+      })
 
       .addCase(rejectBusiness.fulfilled, (state, action) => {
-        const b = state.all.find(b => b.id === action.payload.id);
-        if (b) { b.status = "REJECTED"; b.rejectReason = action.payload.reason; }
+        const b = state.all.find((b) => b.id === action.payload.id);
+        if (b) {
+          b.status = "REJECTED";
+          b.rejectReason = action.payload.reason;
+        }
       })
       .addCase(blockBusiness.fulfilled, (state, action) => {
-        const b = state.all.find(b => b.id === action.payload.id);
-        if (b) { b.status = "INACTIVE"; b.blockReason = action.payload.reason; }
+        const b = state.all.find((b) => b.id === action.payload.id);
+        if (b) {
+          b.status = "INACTIVE";
+          b.blockReason = action.payload.reason;
+        }
       })
       .addCase(unblockBusiness.fulfilled, (state, action) => {
-        const b = state.all.find(b => b.id === action.payload.id);
-        if (b) { b.status = "ACTIVE"; b.blockReason = null; }
+        const b = state.all.find((b) => b.id === action.payload.id);
+        if (b) {
+          b.status = "ACTIVE";
+          b.blockReason = null;
+        }
       })
 
       // TIN
-      .addCase(acceptTIN.pending, (state) => { state.tinAccepting = true; })
+      .addCase(acceptTIN.pending, (state) => {
+        state.tinAccepting = true;
+      })
       .addCase(acceptTIN.fulfilled, (state, action) => {
         state.tinAccepting = false;
-        const b = state.all.find(b => b.id === action.payload.id);
+        const b = state.all.find((b) => b.id === action.payload.id);
         if (b) b.tinStatus = "ACCEPTED";
       })
-      .addCase(acceptTIN.rejected, (state) => { state.tinAccepting = false; })
+      .addCase(acceptTIN.rejected, (state) => {
+        state.tinAccepting = false;
+      })
 
-      .addCase(rejectTIN.pending, (state) => { state.tinRejecting = true; })
+      .addCase(rejectTIN.pending, (state) => {
+        state.tinRejecting = true;
+      })
       .addCase(rejectTIN.fulfilled, (state, action) => {
         state.tinRejecting = false;
-        const b = state.all.find(b => b.id === action.payload.id);
-        if (b) { b.tinStatus = "REJECTED"; b.tinRejectReason = action.payload.reason; }
+        const b = state.all.find((b) => b.id === action.payload.id);
+        if (b) {
+          b.tinStatus = "REJECTED";
+          b.tinRejectReason = action.payload.reason;
+        }
       })
-      .addCase(rejectTIN.rejected, (state) => { state.tinRejecting = false; });
+      .addCase(rejectTIN.rejected, (state) => {
+        state.tinRejecting = false;
+      });
   },
 });
 

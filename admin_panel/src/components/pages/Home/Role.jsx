@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchRoles, addRole, updateRole, deleteRole } from "../../Redux/Features/AllRole";
+import {
+  fetchRoles,
+  addRole,
+  updateRole,
+  deleteRole,
+} from "../../Redux/Features/AllRole";
 import "./Role.css";
 
 const permissions = [
@@ -301,7 +306,9 @@ const Role = () => {
                               onClick={() => handleToggleEdit(perm.key)}
                             >
                               <div className="permission-icon">{perm.icon}</div>
-                              <div className="permission-label">{perm.label}</div>
+                              <div className="permission-label">
+                                {perm.label}
+                              </div>
                               <div className="permission-status">
                                 {editRole[perm.key] ? "✅" : "❌"}
                               </div>
@@ -347,8 +354,12 @@ const Role = () => {
                                 role[perm.key] ? "granted" : "denied"
                               }`}
                             >
-                              <span className="permission-icon">{perm.icon}</span>
-                              <span className="permission-name">{perm.label}</span>
+                              <span className="permission-icon">
+                                {perm.icon}
+                              </span>
+                              <span className="permission-name">
+                                {perm.label}
+                              </span>
                               <span className="permission-status">
                                 {role[perm.key] ? "✅" : "❌"}
                               </span>

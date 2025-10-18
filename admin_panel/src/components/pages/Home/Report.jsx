@@ -16,11 +16,11 @@ const Report = () => {
 
   const [selectedId, setSelectedId] = useState(null);
   const [message, setMessage] = useState("");
-  const [searchTerm, setSearchTerm] = useState('');
-  const [statusFilter, setStatusFilter] = useState('all');
-  const [typeFilter, setTypeFilter] = useState('all');
-  const [sortBy, setSortBy] = useState('id');
-  const [sortOrder, setSortOrder] = useState('desc');
+  const [searchTerm, setSearchTerm] = useState("");
+  const [statusFilter, setStatusFilter] = useState("all");
+  const [typeFilter, setTypeFilter] = useState("all");
+  const [sortBy, setSortBy] = useState("id");
+  const [sortOrder, setSortOrder] = useState("desc");
   const [selectedReport, setSelectedReport] = useState(null);
   const [showDetailModal, setShowDetailModal] = useState(false);
 
@@ -44,7 +44,7 @@ const Report = () => {
 
   // Utility functions
   const handleClearSearch = () => {
-    setSearchTerm('');
+    setSearchTerm("");
   };
 
   const handleReportDetail = (report) => {
@@ -54,121 +54,131 @@ const Report = () => {
 
   const getStatusColor = (status) => {
     switch (status?.toLowerCase()) {
-      case 'pending':
-      case 'gözləmədə':
-        return '#f59e0b';
-      case 'resolved':
-      case 'həll edilib':
-        return '#10b981';
-      case 'rejected':
-      case 'rədd edilib':
-        return '#ef4444';
-      case 'in_progress':
-      case 'davam edir':
-        return '#3b82f6';
+      case "pending":
+      case "gözləmədə":
+        return "#f59e0b";
+      case "resolved":
+      case "həll edilib":
+        return "#10b981";
+      case "rejected":
+      case "rədd edilib":
+        return "#ef4444";
+      case "in_progress":
+      case "davam edir":
+        return "#3b82f6";
       default:
-        return '#64748b';
+        return "#64748b";
     }
   };
 
   const getStatusIcon = (status) => {
     switch (status?.toLowerCase()) {
-      case 'pending':
-      case 'gözləmədə':
-        return '⏳';
-      case 'resolved':
-      case 'həll edilib':
-        return '✅';
-      case 'rejected':
-      case 'rədd edilib':
-        return '❌';
-      case 'in_progress':
-      case 'davam edir':
-        return '🔄';
+      case "pending":
+      case "gözləmədə":
+        return "⏳";
+      case "resolved":
+      case "həll edilib":
+        return "✅";
+      case "rejected":
+      case "rədd edilib":
+        return "❌";
+      case "in_progress":
+      case "davam edir":
+        return "🔄";
       default:
-        return '❓';
+        return "❓";
     }
   };
 
   const getTypeIcon = (type) => {
     switch (type?.toLowerCase()) {
-      case 'spam':
-        return '🚫';
-      case 'fraud':
-      case 'fırıldaq':
-        return '⚠️';
-      case 'inappropriate':
-      case 'uyğunsuz':
-        return '🔞';
-      case 'harassment':
-      case 'təcavüz':
-        return '🚨';
-      case 'fake':
-      case 'saxta':
-        return '🎭';
-      case 'other':
-      case 'digər':
-        return '📝';
+      case "spam":
+        return "🚫";
+      case "fraud":
+      case "fırıldaq":
+        return "⚠️";
+      case "inappropriate":
+      case "uyğunsuz":
+        return "🔞";
+      case "harassment":
+      case "təcavüz":
+        return "🚨";
+      case "fake":
+      case "saxta":
+        return "🎭";
+      case "other":
+      case "digər":
+        return "📝";
       default:
-        return '📋';
+        return "📋";
     }
   };
 
   const formatDate = (dateString) => {
-    if (!dateString) return 'N/A';
+    if (!dateString) return "N/A";
     const date = new Date(dateString);
     const now = new Date();
     const diffTime = Math.abs(now - date);
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    
-    if (diffDays === 1) return 'Bugün';
-    if (diffDays === 2) return 'Dünən';
+
+    if (diffDays === 1) return "Bugün";
+    if (diffDays === 2) return "Dünən";
     if (diffDays <= 7) return `${diffDays - 1} gün əvvəl`;
-    
-    return date.toLocaleString('az-AZ', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
+
+    return date.toLocaleString("az-AZ", {
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
     });
   };
 
   // Filter and sort reports
   const filteredAndSortedReports = useMemo(() => {
-    let filtered = list.filter(report => {
-      const searchMatch = searchTerm === '' || 
+    let filtered = list.filter((report) => {
+      const searchMatch =
+        searchTerm === "" ||
         report.id.toString().includes(searchTerm) ||
-        (report.reportType || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
-        (report.fromUserId || '').toString().includes(searchTerm) ||
-        (report.reportCategoryId || '').toString().includes(searchTerm);
-      
-      const statusMatch = statusFilter === 'all' || 
-        (report.reportStatus || '').toLowerCase() === statusFilter.toLowerCase();
-      
-      const typeMatch = typeFilter === 'all' || 
-        (report.reportType || '').toLowerCase() === typeFilter.toLowerCase();
-      
+        (report.reportType || "")
+          .toLowerCase()
+          .includes(searchTerm.toLowerCase()) ||
+        (report.fromUserId || "").toString().includes(searchTerm) ||
+        (report.reportCategoryId || "").toString().includes(searchTerm);
+
+      const statusMatch =
+        statusFilter === "all" ||
+        (report.reportStatus || "").toLowerCase() ===
+          statusFilter.toLowerCase();
+
+      const typeMatch =
+        typeFilter === "all" ||
+        (report.reportType || "").toLowerCase() === typeFilter.toLowerCase();
+
       return searchMatch && statusMatch && typeMatch;
     });
 
     // Sort
     filtered.sort((a, b) => {
-      let aValue = a[sortBy] || '';
-      let bValue = b[sortBy] || '';
-      
-      if (sortBy === 'id' || sortBy === 'fromUserId' || sortBy === 'reportCategoryId') {
+      let aValue = a[sortBy] || "";
+      let bValue = b[sortBy] || "";
+
+      if (
+        sortBy === "id" ||
+        sortBy === "fromUserId" ||
+        sortBy === "reportCategoryId"
+      ) {
         aValue = parseInt(aValue) || 0;
         bValue = parseInt(bValue) || 0;
-      } else if (sortBy === 'createdAt') {
+      } else if (sortBy === "createdAt") {
         aValue = new Date(aValue || 0).getTime();
         bValue = new Date(bValue || 0).getTime();
       } else {
         aValue = aValue.toString().toLowerCase();
         bValue = bValue.toString().toLowerCase();
       }
-      
-      if (sortOrder === 'asc') {
+
+      if (sortOrder === "asc") {
         return aValue > bValue ? 1 : -1;
       } else {
         return aValue < bValue ? 1 : -1;
@@ -183,10 +193,16 @@ const Report = () => {
     const reports = list || [];
     return {
       total: reports.length,
-      pending: reports.filter(r => (r.reportStatus || '').toLowerCase().includes('pending')).length,
-      resolved: reports.filter(r => (r.reportStatus || '').toLowerCase().includes('resolved')).length,
-      rejected: reports.filter(r => (r.reportStatus || '').toLowerCase().includes('rejected')).length,
-      filtered: filteredAndSortedReports.length
+      pending: reports.filter((r) =>
+        (r.reportStatus || "").toLowerCase().includes("pending")
+      ).length,
+      resolved: reports.filter((r) =>
+        (r.reportStatus || "").toLowerCase().includes("resolved")
+      ).length,
+      rejected: reports.filter((r) =>
+        (r.reportStatus || "").toLowerCase().includes("rejected")
+      ).length,
+      filtered: filteredAndSortedReports.length,
     };
   }, [list, filteredAndSortedReports]);
 
@@ -205,7 +221,8 @@ const Report = () => {
     return (
       <div className="reports-container">
         <div className="error-state">
-          ⚠️ Xəta baş verdi: {typeof error === 'string' ? error : JSON.stringify(error)}
+          ⚠️ Xəta baş verdi:{" "}
+          {typeof error === "string" ? error : JSON.stringify(error)}
         </div>
       </div>
     );
@@ -237,14 +254,16 @@ const Report = () => {
               className="search-input"
             />
             {searchTerm && (
-              <button onClick={handleClearSearch} className="clear-search-btn">✖️</button>
+              <button onClick={handleClearSearch} className="clear-search-btn">
+                ✖️
+              </button>
             )}
           </div>
 
           {/* Filters */}
           <div className="filter-controls">
-            <select 
-              value={statusFilter} 
+            <select
+              value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
               className="filter-select"
             >
@@ -255,8 +274,8 @@ const Report = () => {
               <option value="in_progress">🔄 Davam edir</option>
             </select>
 
-            <select 
-              value={typeFilter} 
+            <select
+              value={typeFilter}
               onChange={(e) => setTypeFilter(e.target.value)}
               className="filter-select"
             >
@@ -269,8 +288,8 @@ const Report = () => {
               <option value="other">📝 Digər</option>
             </select>
 
-            <select 
-              value={sortBy} 
+            <select
+              value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
               className="sort-select"
             >
@@ -281,11 +300,11 @@ const Report = () => {
               <option value="createdAt">📅 Tarix</option>
             </select>
 
-            <button 
-              onClick={() => setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc')}
+            <button
+              onClick={() => setSortOrder(sortOrder === "asc" ? "desc" : "asc")}
               className={`sort-order-btn ${sortOrder}`}
             >
-              {sortOrder === 'asc' ? '↑' : '↓'}
+              {sortOrder === "asc" ? "↑" : "↓"}
             </button>
           </div>
         </div>
@@ -318,7 +337,8 @@ const Report = () => {
       {/* Search Info */}
       {searchTerm && (
         <div className="search-info">
-          🔍 "{searchTerm}" üçün {filteredAndSortedReports.length} nəticə tapıldı
+          🔍 "{searchTerm}" üçün {filteredAndSortedReports.length} nəticə
+          tapıldı
         </div>
       )}
 
@@ -352,21 +372,29 @@ const Report = () => {
                   <td className="td-category">
                     <div className="category-info">
                       <span className="category-icon">📂</span>
-                      <span className="category-text">{report.reportCategoryId || '—'}</span>
+                      <span className="category-text">
+                        {report.reportCategoryId || "—"}
+                      </span>
                     </div>
                   </td>
                   <td className="td-status">
-                    <div 
-                      className="status-badge" 
-                      style={{ backgroundColor: getStatusColor(report.reportStatus) }}
+                    <div
+                      className="status-badge"
+                      style={{
+                        backgroundColor: getStatusColor(report.reportStatus),
+                      }}
                     >
-                      <span className="status-icon">{getStatusIcon(report.reportStatus)}</span>
+                      <span className="status-icon">
+                        {getStatusIcon(report.reportStatus)}
+                      </span>
                       <span className="status-text">{report.reportStatus}</span>
                     </div>
                   </td>
                   <td className="td-type">
                     <div className="type-info">
-                      <span className="type-icon">{getTypeIcon(report.reportType)}</span>
+                      <span className="type-icon">
+                        {getTypeIcon(report.reportType)}
+                      </span>
                       <span className="type-text">{report.reportType}</span>
                     </div>
                   </td>
@@ -378,15 +406,20 @@ const Report = () => {
                   </td>
                   <td className="td-date">
                     <div className="date-info">
-                      <div className="date-main">{formatDate(report.createdAt)}</div>
+                      <div className="date-main">
+                        {formatDate(report.createdAt)}
+                      </div>
                       <div className="date-exact">
-                        {report.createdAt && new Date(report.createdAt).toLocaleTimeString('az-AZ')}
+                        {report.createdAt &&
+                          new Date(report.createdAt).toLocaleTimeString(
+                            "az-AZ"
+                          )}
                       </div>
                     </div>
                   </td>
                   <td className="td-actions">
                     <div className="action-buttons">
-                      <button 
+                      <button
                         onClick={() => handleReportDetail(report)}
                         className="btn-detail"
                       >
@@ -445,16 +478,37 @@ const Report = () => {
 
       {/* Report Detail Modal */}
       {showDetailModal && selectedReport && (
-        <div className="modal-overlay" onClick={() => setShowDetailModal(false)}>
-          <div className="report-detail-modal" onClick={(e) => e.stopPropagation()}>
+        <div
+          className="modal-overlay"
+          onClick={() => setShowDetailModal(false)}
+        >
+          <div
+            className="report-detail-modal"
+            onClick={(e) => e.stopPropagation()}
+          >
             <div className="modal-header">
               <div className="modal-title">
-                <h2>{getTypeIcon(selectedReport.reportType)} Report Detayları</h2>
-                <button className="close-btn" onClick={() => setShowDetailModal(false)}>❌</button>
+                <h2>
+                  {getTypeIcon(selectedReport.reportType)} Report Detayları
+                </h2>
+                <button
+                  className="close-btn"
+                  onClick={() => setShowDetailModal(false)}
+                >
+                  ❌
+                </button>
               </div>
               <div className="report-status-row">
-                <div className="status-badge" style={{ backgroundColor: getStatusColor(selectedReport.reportStatus) }}>
-                  {getStatusIcon(selectedReport.reportStatus)} {selectedReport.reportStatus}
+                <div
+                  className="status-badge"
+                  style={{
+                    backgroundColor: getStatusColor(
+                      selectedReport.reportStatus
+                    ),
+                  }}
+                >
+                  {getStatusIcon(selectedReport.reportStatus)}{" "}
+                  {selectedReport.reportStatus}
                 </div>
                 <div className="report-id-badge">ID: #{selectedReport.id}</div>
               </div>
@@ -466,35 +520,45 @@ const Report = () => {
                 <h3>📋 Əsas Məlumatlar</h3>
                 <div className="info-grid">
                   <div className="info-item">
-                    <strong>📂 Kateqoriya ID:</strong> {selectedReport.reportCategoryId || '—'}
+                    <strong>📂 Kateqoriya ID:</strong>{" "}
+                    {selectedReport.reportCategoryId || "—"}
                   </div>
                   <div className="info-item">
-                    <strong>📊 Status:</strong> 
-                    <span 
+                    <strong>📊 Status:</strong>
+                    <span
                       className="status-tag"
-                      style={{ backgroundColor: getStatusColor(selectedReport.reportStatus) }}
+                      style={{
+                        backgroundColor: getStatusColor(
+                          selectedReport.reportStatus
+                        ),
+                      }}
                     >
-                      {getStatusIcon(selectedReport.reportStatus)} {selectedReport.reportStatus}
+                      {getStatusIcon(selectedReport.reportStatus)}{" "}
+                      {selectedReport.reportStatus}
                     </span>
                   </div>
                   <div className="info-item">
-                    <strong>📋 Report Növü:</strong> 
+                    <strong>📋 Report Növü:</strong>
                     <span className="type-tag">
-                      {getTypeIcon(selectedReport.reportType)} {selectedReport.reportType}
+                      {getTypeIcon(selectedReport.reportType)}{" "}
+                      {selectedReport.reportType}
                     </span>
                   </div>
                   <div className="info-item">
-                    <strong>👤 İstifadəçi ID:</strong> #{selectedReport.fromUserId}
+                    <strong>👤 İstifadəçi ID:</strong> #
+                    {selectedReport.fromUserId}
                   </div>
                   <div className="info-item">
-                    <strong>📅 Yaradılma Tarixi:</strong> {formatDate(selectedReport.createdAt)}
+                    <strong>📅 Yaradılma Tarixi:</strong>{" "}
+                    {formatDate(selectedReport.createdAt)}
                   </div>
                   <div className="info-item">
-                    <strong>⏰ Dəqiq Vaxt:</strong> 
-                    {selectedReport.createdAt 
-                      ? new Date(selectedReport.createdAt).toLocaleString('az-AZ')
-                      : 'N/A'
-                    }
+                    <strong>⏰ Dəqiq Vaxt:</strong>
+                    {selectedReport.createdAt
+                      ? new Date(selectedReport.createdAt).toLocaleString(
+                          "az-AZ"
+                        )
+                      : "N/A"}
                   </div>
                 </div>
               </div>
@@ -520,12 +584,14 @@ const Report = () => {
                   )}
                   {selectedReport.assignedTo && (
                     <div className="info-item">
-                      <strong>👨‍💼 Təyin edilib:</strong> {selectedReport.assignedTo}
+                      <strong>👨‍💼 Təyin edilib:</strong>{" "}
+                      {selectedReport.assignedTo}
                     </div>
                   )}
                   {selectedReport.resolvedAt && (
                     <div className="info-item">
-                      <strong>✅ Həll edilmə tarixi:</strong> {formatDate(selectedReport.resolvedAt)}
+                      <strong>✅ Həll edilmə tarixi:</strong>{" "}
+                      {formatDate(selectedReport.resolvedAt)}
                     </div>
                   )}
                 </div>

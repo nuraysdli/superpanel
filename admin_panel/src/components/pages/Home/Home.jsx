@@ -17,7 +17,7 @@ import { Product } from "./Product";
 import { Notification } from "./Notification";
 import Profiles from "./Profiles";
 import Report from "./Report";
-import WheelService from "./WheelService";
+// import WheelService from "./WheelService";
 import Log from "./Log";
 
 // Redux Fetch Funksiyaları
@@ -84,7 +84,7 @@ const Home = () => {
     { id: "notification", label: "Bildirişlər", icon: "🔔" },
     { id: "profiles", label: "Xidmət göstərənlər", icon: "👤" },
     { id: "report", label: "Hesabatlar", icon: "📈" },
-    { id: "wheel", label: "Təkər Xidməti", icon: "⚙️" },
+    // { id: "wheel", label: "Təkər Xidməti", icon: "⚙️" },
     { id: "logs", label: "Loglar", icon: "📝" },
   ];
 
@@ -108,8 +108,8 @@ const Home = () => {
         return <Profiles />;
       case "report":
         return <Report />;
-      case "wheel":
-        return <WheelService />;
+      // case "wheel":
+      //   return <WheelService />;
       case "logs":
         return <Log />;
       default:
@@ -157,10 +157,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div
-        className="main-content"
-        style={{ marginLeft: sidebarCollapsed ? "70px" : "250px" }}
-      >
+      <div className="main-content" style={{ marginLeft: "250px" }}>
         <div className="header">
           <h1 className="page-title">
             {menuItems.find((item) => item.id === activePage)?.label ||
@@ -174,7 +171,9 @@ const Home = () => {
           </div>
         </div>
 
-        <div className="content">{renderContent()}</div>
+        <div className="content" style={{ marginLeft: "100px" }}>
+          {renderContent()}
+        </div>
       </div>
     </div>
   );

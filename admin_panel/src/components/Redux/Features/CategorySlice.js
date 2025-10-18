@@ -2,10 +2,13 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import api from "../../../api";
 
 // 🔹 Bütün kateqoriyaları gətir
-export const fetchCategories = createAsyncThunk("categories/fetchCategories", async () => {
-  const res = await api.get("/api/categories");
-  return res.data;
-});
+export const fetchCategories = createAsyncThunk(
+  "categories/fetchCategories",
+  async () => {
+    const res = await api.get("/api/categories");
+    return res.data;
+  }
+);
 
 // 🔹 Lokalizə olunmuş kateqoriyaları gətir
 export const fetchLocalizedCategories = createAsyncThunk(
@@ -17,22 +20,31 @@ export const fetchLocalizedCategories = createAsyncThunk(
 );
 
 // 🔹 Yeni kateqoriya əlavə et
-export const addCategory = createAsyncThunk("categories/addCategory", async (categoryData) => {
-  const res = await api.post("/api/categories", categoryData);
-  return res.data;
-});
+export const addCategory = createAsyncThunk(
+  "categories/addCategory",
+  async (categoryData) => {
+    const res = await api.post("/api/categories", categoryData);
+    return res.data;
+  }
+);
 
 // 🔹 Kateqoriyanı yenilə
-export const updateCategory = createAsyncThunk("categories/updateCategory", async (categoryData) => {
-  const res = await api.put("/api/categories", categoryData);
-  return res.data;
-});
+export const updateCategory = createAsyncThunk(
+  "categories/updateCategory",
+  async (categoryData) => {
+    const res = await api.put("/api/categories", categoryData);
+    return res.data;
+  }
+);
 
 // 🔹 Kateqoriyanı sil
-export const deleteCategory = createAsyncThunk("categories/deleteCategory", async (id) => {
-  await api.delete(`/api/categories/${id}`);
-  return id;
-});
+export const deleteCategory = createAsyncThunk(
+  "categories/deleteCategory",
+  async (id) => {
+    await api.delete(`/api/categories/${id}`);
+    return id;
+  }
+);
 
 // 🔹 ID-yə görə axtarış
 export const searchCategoryById = createAsyncThunk(
@@ -44,8 +56,13 @@ export const searchCategoryById = createAsyncThunk(
       console.log("Search API response:", res.data);
       return res.data;
     } catch (error) {
-      console.error("Search category error:", error.response?.data || error.message);
-      return rejectWithValue(error.response?.data?.message || "Kateqoriya tapılmadı");
+      console.error(
+        "Search category error:",
+        error.response?.data || error.message
+      );
+      return rejectWithValue(
+        error.response?.data?.message || "Kateqoriya tapılmadı"
+      );
     }
   }
 );
@@ -68,7 +85,7 @@ const categorySlice = createSlice({
     // 🔹 Name ilə axtarış (local filter)
     searchCategoryByName: (state, action) => {
       const searchTerm = action.payload.toLowerCase();
-      state.searchResult = state.list.filter(cat =>
+      state.searchResult = state.list.filter((cat) =>
         cat.name?.toLowerCase().includes(searchTerm)
       );
     },
@@ -119,17 +136,21 @@ const categorySlice = createSlice({
           name: action.payload.name || action.meta.arg.name, // fallback
         };
 
-        const index = state.list.findIndex(cat => cat.id === updatedCat.id);
+        const index = state.list.findIndex((cat) => cat.id === updatedCat.id);
         if (index >= 0) state.list[index] = updatedCat;
 
-        const locIndex = state.localized.findIndex(cat => cat.id === updatedCat.id);
+        const locIndex = state.localized.findIndex(
+          (cat) => cat.id === updatedCat.id
+        );
         if (locIndex >= 0) state.localized[locIndex] = updatedCat;
       })
 
       // 🔹 deleteCategory
       .addCase(deleteCategory.fulfilled, (state, action) => {
-        state.list = state.list.filter(cat => cat.id !== action.payload);
-        state.localized = state.localized.filter(cat => cat.id !== action.payload);
+        state.list = state.list.filter((cat) => cat.id !== action.payload);
+        state.localized = state.localized.filter(
+          (cat) => cat.id !== action.payload
+        );
       })
 
       // 🔹 searchCategoryById
@@ -150,5 +171,6 @@ const categorySlice = createSlice({
   },
 });
 
-export const { clearSearchResult, searchCategoryByName } = categorySlice.actions;
+export const { clearSearchResult, searchCategoryByName } =
+  categorySlice.actions;
 export default categorySlice.reducer;

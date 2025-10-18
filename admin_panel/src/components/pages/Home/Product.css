@@ -6,7 +6,7 @@
   margin: 0 auto;
   background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
   min-height: 100vh;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 /* ===== HEADER STYLES ===== */
@@ -23,13 +23,17 @@
 }
 
 .products-header::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   right: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.1) 0%,
+    transparent 70%
+  );
   animation: float 6s ease-in-out infinite;
 }
 
@@ -37,7 +41,7 @@
   font-size: 3rem;
   font-weight: 800;
   margin: 0 0 15px 0;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
   position: relative;
   z-index: 1;
 }
@@ -228,7 +232,11 @@
 .search-info {
   margin-bottom: 20px;
   padding: 12px 20px;
-  background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(16, 185, 129, 0.1) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(34, 197, 94, 0.1) 0%,
+    rgba(16, 185, 129, 0.1) 100%
+  );
   color: #059669;
   border-radius: 12px;
   font-weight: 600;
@@ -257,7 +265,11 @@
 }
 
 .error-state {
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(220, 38, 38, 0.1) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(239, 68, 68, 0.1) 0%,
+    rgba(220, 38, 38, 0.1) 100%
+  );
   color: #dc2626;
   padding: 20px;
   border-radius: 12px;
@@ -322,7 +334,7 @@
 }
 
 .product-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -692,13 +704,22 @@
 
 /* ===== ANIMATIONS ===== */
 @keyframes float {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  50% { transform: translateY(-20px) rotate(5deg); }
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes modalSlideIn {
@@ -717,7 +738,7 @@
   .products-grid {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   }
-  
+
   .stats-section {
     gap: 10px;
   }
@@ -727,67 +748,67 @@
   .products-container {
     padding: 20px;
   }
-  
+
   .products-title {
     font-size: 2.2rem;
   }
-  
+
   .products-controls {
     flex-direction: column;
     align-items: stretch;
   }
-  
+
   .search-sort-section {
     max-width: none;
   }
-  
+
   .view-stats-section {
     align-items: stretch;
   }
-  
+
   .view-controls,
   .stats-section {
     justify-content: center;
   }
-  
+
   .sort-controls {
     justify-content: center;
   }
-  
+
   .products-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .product-header {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
   }
-  
+
   .product-list-info {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
   }
-  
+
   .product-list-main {
     flex-direction: column;
     align-items: flex-start;
     gap: 8px;
   }
-  
+
   .modal-content {
     padding: 20px;
   }
-  
+
   .info-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .images-grid {
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   }
-  
+
   .specs-grid {
     grid-template-columns: 1fr;
   }
@@ -797,40 +818,40 @@
   .products-container {
     padding: 15px;
   }
-  
+
   .products-header {
     padding: 30px 20px;
   }
-  
+
   .products-title {
     font-size: 1.8rem;
   }
-  
+
   .product-card {
     padding: 20px;
   }
-  
+
   .modal-header {
     padding: 20px;
   }
-  
+
   .modal-title h2 {
     font-size: 1.4rem;
   }
-  
+
   .sort-controls {
     flex-direction: column;
   }
-  
+
   .sort-btn {
     text-align: center;
   }
-  
+
   .stat-card {
     padding: 12px;
     min-width: 70px;
   }
-  
+
   .stat-number {
     font-size: 1.2rem;
   }
