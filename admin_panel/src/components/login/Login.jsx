@@ -9,7 +9,7 @@ const Login = () => {
   const navigate = useNavigate();
   const { loading, error: authError, user, token } = useSelector((state) => state.auth);
 
-  const [username, setUsername] = useState("");
+  const [email, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [currentTime, setCurrentTime] = useState(new Date());
@@ -31,10 +31,10 @@ const Login = () => {
     setError('');
     setSuccess('');
     
-    if (username && password) {
+    if (email && password) {
       try {
         const response = await dispatch(loginAdmin({
-          username: username,
+          email: email,
           password: password
         }));
         
@@ -145,9 +145,9 @@ const Login = () => {
                 id="login-username"
                 type="text"
                 placeholder="İstifadəçi adınızı daxil edin"
-                value={username}
+                value={email}
                 onChange={(e) => setUsername(e.target.value)}
-                className={`form-input ${username ? 'has-value' : ''}`}
+                className={`form-input ${email ? 'has-value' : ''}`}
               />
             </div>
           </div>
