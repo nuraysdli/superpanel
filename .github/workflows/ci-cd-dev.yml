@@ -20,7 +20,7 @@ jobs:
 
       - name: Install dependencies & build React app
         run: |
-          cd react
+          cd admin_panel
           npm install
           npm run build
 

@@ -1,16 +1,16 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const AuthUrl = "http://194.163.173.179:3300/api/auth/login";
+const AuthUrl = "http://194.163.173.179:3300/api/auth/login/admin";
 const RefreshUrl = "http://194.163.173.179:3300/api/auth/refresh";
 
 // 🔹 Admin login
 export const loginAdmin = createAsyncThunk(
   "auth/loginAdmin",
-  async ({ username, password }) => {
+  async ({ email, password }) => {
     const res = await axios.post(
       AuthUrl,
-      { phone: username, password },
+      { email: email, password },
       { headers: { "Content-Type": "application/json" } }
     );
 
