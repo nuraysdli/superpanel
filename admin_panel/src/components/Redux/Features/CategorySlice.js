@@ -119,16 +119,6 @@ const categorySlice = createSlice({
         state.error = action.error.message;
       })
 
-      // 🔹 addCategory
-      .addCase(addCategory.fulfilled, (state, action) => {
-        const newCat = {
-          id: action.payload.id,
-          name: action.payload.name || action.meta.arg.name, // fallback
-        };
-        state.list.push(newCat);
-        state.localized.push(newCat);
-      })
-
       // 🔹 updateCategory
       .addCase(updateCategory.fulfilled, (state, action) => {
         const updatedCat = {
@@ -146,7 +136,25 @@ const categorySlice = createSlice({
       })
 
       // 🔹 deleteCategory
+      .addCase(addCategory.fulfilled, (state, action) => {
+        const newCat = {
+          id: action.payload?.id,
+          name: action.payload?.name || action.meta.arg.name,
+        };
+
+        if (!state.list) state.list = [];
+        if (!state.localized) state.localized = [];
+
+        if (newCat.id) {
+          state.list.push(newCat);
+          state.localized.push(newCat);
+        }
+      })
+
       .addCase(deleteCategory.fulfilled, (state, action) => {
+        if (!state.list) state.list = [];
+        if (!state.localized) state.localized = [];
+
         state.list = state.list.filter((cat) => cat.id !== action.payload);
         state.localized = state.localized.filter(
           (cat) => cat.id !== action.payload

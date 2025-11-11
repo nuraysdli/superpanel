@@ -13,42 +13,26 @@ import "./Ads.css";
 const AdsList = () => {
   const dispatch = useDispatch();
   const { list, loading, error } = useSelector((state) => state.ads);
+  console.log(list);
+
   const { token, user } = useSelector((state) => state.auth);
 
   const [newAd, setNewAd] = useState({ link: "", userId: user?.id || 1 });
   const [files, setFiles] = useState({});
   const [locales, setLocales] = useState({});
-  const [imageUrls, setImageUrls] = useState({});
-  const [editedAds, setEditedAds] = useState({}); // Dəyişiklikləri saxlayır
+  const [editedAds, setEditedAds] = useState({});
 
   const BASE_URL = "http://194.163.173.179:3300";
 
   // Ads yüklə
   useEffect(() => {
     if (token) dispatch(fetchAds());
-  }, [token, dispatch]);
-
-  // Blob preview
-  useEffect(() => {
-    list.forEach((ad) => {
-      if (ad.pictureUrl && !imageUrls[ad.id]) {
-        fetch(`${BASE_URL}/api/files/download/${ad.pictureUrl}`, {
-          headers: { Authorization: `Bearer ${token}` },
-        })
-          .then((res) => res.blob())
-          .then((blob) => {
-            const url = URL.createObjectURL(blob);
-            setImageUrls((prev) => ({ ...prev, [ad.id]: url }));
-          })
-          .catch(console.error);
-      }
-    });
-  }, [list, token]);
+  }, [token]);
 
   // Yeni reklam əlavə et
   const handleAddAd = () => {
     if (!newAd.link.trim()) return alert("Link daxil edin!");
-    dispatch(addAd({ ...newAd, userId: user?.id }));
+    dispatch(addAd({ ...newAd, userId: user?.id, isActive: 1 }));
     setNewAd({ link: "", userId: user?.id || 1 });
   };
 
@@ -60,8 +44,7 @@ const AdsList = () => {
     dispatch(uploadAdImage({ id, file: files[id], locale }))
       .unwrap()
       .then((res) => {
-        const url = `${BASE_URL}/api/files/download/${res.uuidName}`;
-        setImageUrls((prev) => ({ ...prev, [id]: url }));
+        alert("Şəkil uğurla yükləndi!");
       })
       .catch(console.error);
   };
@@ -176,8 +159,9 @@ const AdsList = () => {
                         <>
                           <img
                             src={
-                              imageUrls[ad.id] ||
-                              `${BASE_URL}/api/files/download/${ad.pictureUrl}`
+                              ad.pictureUrl.startsWith("http")
+                                ? ad.pictureUrl
+                                : `${BASE_URL}/api/files/download/${ad.pictureUrl}`
                             }
                             alt="Reklam şəkli"
                             className="ad-image"

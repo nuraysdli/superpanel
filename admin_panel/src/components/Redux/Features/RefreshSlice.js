@@ -1,6 +1,6 @@
 // Redux/Features/RefreshSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import api from "../../../api";
 
 // 🔹 refresh token istəyi göndər
 export const refreshToken = createAsyncThunk(
@@ -10,13 +10,7 @@ export const refreshToken = createAsyncThunk(
     if (!refreshToken) return rejectWithValue("No refresh token found");
 
     try {
-      const res = await axios.post(
-        "http://194.163.173.179:3300/api/auth/refresh",
-        {
-          refreshToken,
-        }
-      );
-
+      const res = await api.post("/api/auth/refresh", { refreshToken });
       return res.data; // { token, refreshToken }
     } catch (err) {
       return rejectWithValue(err.response?.data || err.message);
