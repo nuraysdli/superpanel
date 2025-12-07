@@ -143,9 +143,9 @@ const Profiles = () => {
           className="profile-avatar"
           style={{ backgroundColor: getProfileColor(profile.id) }}
         >
-          {profile.profileImage ? (
+          {profile.profilePictureUrl ? (
             <img
-              src={profile.profileImage}
+              src={profile.profilePictureUrl}
               alt={`${profile.name} ${profile.surname}`}
             />
           ) : (
